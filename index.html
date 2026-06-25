@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Computer Game Development Portfolio — อชิรวิทย์ ศรีชา</title>
+  <meta name="description" content="ผลงานแล็บวิชาพัฒนาเกมด้วย Godot Engine โดย อชิรวิทย์ ศรีชา" />
+  <meta name="theme-color" content="#05060f" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Computer Game Development Portfolio — อชิรวิทย์ ศรีชา" />
+  <meta property="og:description" content="ผลงานแล็บวิชาพัฒนาเกมด้วย Godot Engine" />
+  <meta property="og:image" content="rider.png" />
+
+  <!-- LINE Seed Sans TH -->
+  <style>
+    @font-face{font-family:'LINE Seed Sans TH';src:url('https://cdn.jsdelivr.net/gh/lazywasabi/thai-web-fonts@7/fonts/LINESeedSansTH/LINESeedSansTH-Thin.woff2') format('woff2');font-weight:200;font-display:swap}
+    @font-face{font-family:'LINE Seed Sans TH';src:url('https://cdn.jsdelivr.net/gh/lazywasabi/thai-web-fonts@7/fonts/LINESeedSansTH/LINESeedSansTH-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+    @font-face{font-family:'LINE Seed Sans TH';src:url('https://cdn.jsdelivr.net/gh/lazywasabi/thai-web-fonts@7/fonts/LINESeedSansTH/LINESeedSansTH-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+    @font-face{font-family:'LINE Seed Sans TH';src:url('https://cdn.jsdelivr.net/gh/lazywasabi/thai-web-fonts@7/fonts/LINESeedSansTH/LINESeedSansTH-ExtraBold.woff2') format('woff2');font-weight:800;font-display:swap}
+  </style>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        fontFamily: { sans: ['"LINE Seed Sans TH"','system-ui','sans-serif'] },
+        colors: { ink: '#05060f' },
+      } },
+    };
+  </script>
+
+  <style>
+    :root{ --mx:50%; --my:50%; }
+    *{ scroll-behavior:smooth; }
+    body{ -webkit-font-smoothing:antialiased; background:#05060f; cursor:default; }
+    ::selection{ background:rgba(129,140,248,.45); color:#fff; }
+
+    /* ---- custom scrollbar ---- */
+    ::-webkit-scrollbar{ width:8px; }
+    ::-webkit-scrollbar-track{ background:transparent; }
+    ::-webkit-scrollbar-thumb{ background:rgba(255,255,255,.12); border-radius:99px; }
+    ::-webkit-scrollbar-thumb:hover{ background:rgba(255,255,255,.22); }
+    html{ scrollbar-width:thin; scrollbar-color:rgba(255,255,255,.15) transparent; }
+
+    /* ---- AAA background glows (นุ่ม ช้า) ---- */
+    @keyframes glowDriftL{ 0%,100%{ transform:translate(0,-50%) scale(1); } 50%{ transform:translate(9%,-56%) scale(1.15); } }
+    @keyframes glowDriftR{ 0%,100%{ transform:translate(0,-50%) scale(1.05); } 50%{ transform:translate(-9%,-44%) scale(.92); } }
+    @keyframes glowPulse{ 0%,100%{ transform:scale(1); opacity:.7; } 50%{ transform:scale(1.22); opacity:1; } }
+    @keyframes glowAura{ 0%,100%{ transform:translate(-50%,0) scale(1); opacity:.8; } 50%{ transform:translate(-50%,-6%) scale(1.12); opacity:1; } }
+
+    /* ---- moving grid ---- */
+    @keyframes gridmove{ from{ background-position:0 0; } to{ background-position:0 60px; } }
+    .grid-bg{
+      background-image:
+        linear-gradient(rgba(99,102,241,.08) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(99,102,241,.08) 1px,transparent 1px);
+      background-size:60px 60px;
+      mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 40%,transparent 100%);
+      -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 40%,transparent 100%);
+      animation:gridmove 6s linear infinite;
+    }
+
+    /* ---- animated gradient title ---- */
+    @keyframes hue{ to{ background-position:200% center; } }
+    .title-grad{
+      background:linear-gradient(90deg,#a5b4fc,#f0abfc,#67e8f9,#a5b4fc);
+      background-size:200% auto;
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      animation:hue 6s linear infinite;
+    }
+
+    /* ---- shimmer chip ---- */
+    @keyframes shimmer{ 100%{ transform:translateX(250%); } }
+    .shimmer::after{ content:''; position:absolute; inset:0; transform:translateX(-150%);
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent); animation:shimmer 3.5s infinite; }
+
+    /* ---- card glow that follows mouse ---- */
+    .card{ transform-style:preserve-3d; transition:transform .25s ease, border-color .3s; }
+    .card-glow{ background:radial-gradient(400px circle at var(--cx,50%) var(--cy,50%),rgba(129,140,248,.18),transparent 40%); opacity:0; transition:opacity .3s; }
+    .card:hover .card-glow{ opacity:1; }
+
+    /* ---- scroll reveal (fade in + slide up) ---- */
+    .reveal{ opacity:0; transform:translateY(40px); transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+    .reveal.in{ opacity:1; transform:none; }
+
+    /* ---- scroll indicator ---- */
+    @keyframes wheel{ 0%{ transform:translateY(0); opacity:1; } 70%{ opacity:1; } 100%{ transform:translateY(12px); opacity:0; } }
+    @keyframes bounceDown{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(8px); } }
+    .scroll-cue{ transition:transform .3s, color .3s; }
+    .scroll-cue:hover{ transform:translateY(4px); color:#fff; }
+
+    /* ---- navbar active link (scrollspy) ---- */
+    .nav-link.active{ background:rgba(255,255,255,.12); color:#fff; }
+
+    /* ---- back to top ---- */
+    #toTop{ opacity:0; transform:translateY(16px); pointer-events:none; transition:opacity .3s, transform .3s, background .3s; }
+    #toTop.show{ opacity:1; transform:none; pointer-events:auto; }
+
+    /* ---- play button sheen ---- */
+    @keyframes pulseGlow{ 0%,100%{ box-shadow:0 0 0 0 rgba(99,102,241,.5); } 50%{ box-shadow:0 0 0 10px rgba(99,102,241,0); } }
+    .pulse{ animation:pulseGlow 2.2s infinite; }
+
+    @keyframes floaty{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-10px); } }
+    .floaty{ animation:floaty 4s ease-in-out infinite; }
+
+    /* ---- cowboy rider particles (ขับด้วย JS rAF) ---- */
+    .rider-wrap{ position:absolute; top:0; left:0; will-change:transform; }
+    .rider-wrap img{ display:block; will-change:transform; filter:drop-shadow(0 10px 18px rgba(0,0,0,.55)); }
+
+    @media (prefers-reduced-motion: reduce){ *{ animation:none!important; } .reveal{ opacity:1; transform:none; } }
+  </style>
+</head>
+
+<body class="font-sans min-h-screen text-slate-100 overflow-x-hidden">
+
+  <!-- ============ STICKY NAVBAR ============ -->
+  <nav class="fixed inset-x-0 top-0 z-50">
+    <div class="mx-auto flex max-w-6xl items-center justify-center px-4 py-3 sm:px-6">
+      <div id="navPill" class="flex origin-top items-center gap-1 rounded-full border border-white/10 bg-ink/60 p-1 pl-4 backdrop-blur transition-transform duration-300">
+        <a href="#top" class="nav-link rounded-full px-3 py-1.5 text-sm font-extrabold tracking-tight text-white sm:px-4">Main</a>
+        <a href="#labs" class="nav-link rounded-full px-3 py-1.5 text-sm font-semibold text-slate-300 transition hover:bg-white/10 hover:text-white sm:px-4">Labs</a>
+        <a href="#projects" class="nav-link rounded-full px-3 py-1.5 text-sm font-semibold text-slate-300 transition hover:bg-white/10 hover:text-white sm:px-4">Projects</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============ BACKGROUND LAYERS ============ -->
+  <div class="fixed inset-0 -z-10 overflow-hidden bg-ink">
+    <!-- ===== AAA background glow layer (ใต้สุด, ไม่เลื่อนตาม) ===== -->
+    <div class="pointer-events-none absolute inset-0">
+      <!-- ฝั่งซ้ายกลางจอ: ฟ้า/น้ำเงินนีออน -->
+      <div class="absolute top-1/2 -left-40 h-[40rem] w-[40rem] rounded-full bg-cyan-500/10 blur-[120px] will-change-transform" style="animation:glowDriftL 17s ease-in-out infinite"></div>
+      <div class="absolute top-[30%] -left-24 h-[26rem] w-[26rem] rounded-full bg-blue-600/10 blur-[120px] will-change-transform" style="animation:glowPulse 12s ease-in-out infinite"></div>
+      <!-- ฝั่งขวากลางจอ: ม่วง/ชมพูนีออน -->
+      <div class="absolute top-1/2 -right-40 h-[40rem] w-[40rem] rounded-full bg-purple-600/10 blur-[120px] will-change-transform" style="animation:glowDriftR 20s ease-in-out infinite"></div>
+      <div class="absolute bottom-[22%] -right-24 h-[26rem] w-[26rem] rounded-full bg-fuchsia-500/10 blur-[120px] will-change-transform" style="animation:glowPulse 15s ease-in-out infinite"></div>
+      <!-- กลางใต้ตัวหนังสือหลัก: ครามจางๆ เป็นออร่า -->
+      <div class="absolute left-1/2 top-[26%] h-[42rem] w-[62rem] max-w-[120vw] rounded-full bg-indigo-500/[.06] blur-[150px] will-change-transform" style="animation:glowAura 14s ease-in-out infinite"></div>
+    </div>
+    <canvas id="stars" class="absolute inset-0 h-full w-full"></canvas>
+    <div id="pGrid" class="absolute inset-0 grid-bg will-change-transform"></div>
+    <div class="absolute inset-0 bg-ink/40"></div>
+  </div>
+
+  <!-- ============ COWBOY RIDER PARTICLES (หลัง content) ============ -->
+  <div id="riders" class="pointer-events-none absolute inset-x-0 top-0 h-56 overflow-hidden" style="z-index:40"></div>
+
+  <!-- ============ CONTENT (อยู่เหนือแสงพื้นหลังเสมอ) ============ -->
+  <div id="top" class="relative z-10">
+
+  <!-- ============ HEADER ============ -->
+  <header class="relative mx-auto max-w-6xl px-6 pt-24 pb-16 text-center sm:pt-32">
+    <div class="reveal inline-flex">
+      <span class="shimmer relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-indigo-400/30 bg-white/5 px-5 py-2 text-sm font-medium text-indigo-200 backdrop-blur">
+        <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        Game Dev Lab
+      </span>
+    </div>
+
+    <h1 class="reveal mt-8 text-5xl font-extrabold leading-[1.05] tracking-tight sm:text-7xl lg:text-8xl">
+      <span class="title-grad">Computer Game</span><br/>
+      <span class="title-grad">Development</span>
+      <span class="block mt-2 text-2xl font-bold text-slate-400 sm:text-4xl">Portfolio</span>
+    </h1>
+
+    <div class="reveal mt-10 flex flex-col items-center gap-1">
+      <p class="text-2xl font-extrabold sm:text-3xl">
+        <span class="bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">อชิรวิทย์ ศรีชา</span>
+      </p>
+      <p class="font-mono text-sm tracking-widest text-indigo-300/80">STUDENT ID · 673380353-1</p>
+    </div>
+
+    <!-- stats -->
+    <div class="reveal mx-auto mt-12 grid max-w-md grid-cols-3 gap-4">
+      <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-5 backdrop-blur">
+        <div class="counter text-3xl font-extrabold text-indigo-300" data-to="7">0</div>
+        <div class="mt-1 text-xs text-slate-400">Labs</div>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-5 backdrop-blur">
+        <div class="counter text-3xl font-extrabold text-cyan-300" data-to="3">0</div>
+        <div class="mt-1 text-xs text-slate-400">Projects</div>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-5 backdrop-blur">
+        <div class="counter text-3xl font-extrabold text-fuchsia-300" data-to="1">0</div>
+        <div class="mt-1 text-xs text-slate-400">Playable</div>
+      </div>
+    </div>
+
+    <a href="#showcase" id="scrollCue" class="scroll-cue reveal mt-14 inline-flex flex-col items-center gap-3 text-slate-400">
+      <span class="text-xs font-semibold uppercase tracking-[0.25em]">เลื่อนลงดูผลงาน</span>
+      <span class="floaty flex h-11 w-7 items-start justify-center rounded-full border-2 border-slate-500/60 p-1.5">
+        <span class="h-2.5 w-1.5 rounded-full bg-slate-300" style="animation:wheel 1.6s ease-in-out infinite"></span>
+      </span>
+      <svg class="h-5 w-5" style="animation:bounceDown 1.6s ease-in-out infinite" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 9l6 6 6-6"/>
+      </svg>
+    </a>
+  </header>
+
+  <!-- ============ CARDS ============ -->
+  <main id="showcase" class="relative mx-auto max-w-6xl px-6 pb-28 scroll-mt-16">
+    <h2 class="reveal mb-10 text-center text-sm font-bold uppercase tracking-[0.3em] text-slate-500">Lab Showcase</h2>
+
+    <h3 id="labs" class="reveal mb-6 flex scroll-mt-24 items-center gap-3 text-lg font-extrabold text-slate-200"><span class="h-5 w-1 rounded bg-indigo-400"></span>Labs</h3>
+    <div id="labGrid" class="grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-3">
+
+      <!-- Lab 01 -->
+      <article class="card reveal group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[.04] p-px backdrop-blur-xl">
+        <div class="card-glow pointer-events-none absolute inset-0 rounded-3xl"></div>
+        <div class="relative flex flex-1 flex-col rounded-[calc(1.5rem-1px)]">
+          <div class="relative flex h-44 items-center justify-center overflow-hidden rounded-t-3xl bg-gradient-to-br from-indigo-500/25 via-sky-500/15 to-cyan-500/25">
+            <div class="absolute inset-0 opacity-30 [background:radial-gradient(circle_at_30%_30%,#fff,transparent_60%)]"></div>
+            <span class="text-7xl drop-shadow-2xl transition duration-500 group-hover:scale-125 group-hover:-rotate-6">👋</span>
+            <span class="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-emerald-500/20 px-3 py-1 text-xs font-bold text-emerald-300 ring-1 ring-emerald-400/40">
+              <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span> LIVE · เล่นได้
+            </span>
+          </div>
+          <div class="flex flex-1 flex-col p-6">
+            <p class="font-mono text-xs font-bold tracking-widest text-indigo-400">LAB 01</p>
+            <h3 class="mt-2 text-xl font-extrabold">แบบฝึกหัดที่ 1</h3>
+            <p class="mt-2 flex-1 text-sm leading-relaxed text-slate-400">สร้างฉากแนะนำตนเอง ด้วย Godot</p>
+            <a href="lab01/index.html"
+               class="pulse mt-6 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-fuchsia-500 px-4 py-3 text-sm font-extrabold text-white transition hover:from-indigo-400 hover:to-fuchsia-400 active:scale-95">
+              ▶ เปิดชมเลย
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- ตัวนำทางลง Projects -->
+    <a href="#projects" class="scroll-cue reveal mx-auto mt-12 flex w-fit items-center gap-2 rounded-full border border-fuchsia-400/30 bg-fuchsia-500/10 px-5 py-2.5 text-sm font-bold text-fuchsia-200 backdrop-blur transition hover:bg-fuchsia-500/20">
+      ยังมีผลงาน Projects ด้านล่างอีก
+      <svg class="h-4 w-4" style="animation:bounceDown 1.6s ease-in-out infinite" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    </a>
+
+    <h3 id="projects" class="reveal mb-6 mt-16 flex scroll-mt-24 items-center gap-3 text-lg font-extrabold text-slate-200"><span class="h-5 w-1 rounded bg-fuchsia-400"></span>Projects</h3>
+    <div id="projGrid" class="grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-3"></div>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="relative border-t border-white/10 py-10 text-center">
+    <p class="text-sm text-slate-500">© 2026 <span class="font-bold text-slate-300">อชิรวิทย์ ศรีชา</span> · Built with Godot &amp; Tailwind CSS</p>
+    <p class="mt-1 font-mono text-xs tracking-widest text-slate-600">COMPUTER GAME DEVELOPMENT</p>
+  </footer>
+
+  </div><!-- /content z-10 -->
+
+  <!-- ============ BACK TO TOP ============ -->
+  <button id="toTop" class="fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-ink/70 text-lg text-white backdrop-blur hover:bg-white/10" aria-label="กลับขึ้นบนสุด">↑</button>
+
+  <!-- ============ SCRIPTS ============ -->
+  <script>
+    // ---- สร้างการ์ด coming-soon (Labs 02–07 + Projects 01–03) ----
+    function comingCard(label, i) {
+      const delay = ((i % 3) * 0.08).toFixed(2);
+      return `<article class="card reveal group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[.02] p-px backdrop-blur-xl" style="transition-delay:${delay}s">
+        <div class="card-glow pointer-events-none absolute inset-0 rounded-3xl"></div>
+        <div class="relative flex flex-1 flex-col rounded-[calc(1.5rem-1px)]">
+          <div class="relative flex h-44 items-center justify-center overflow-hidden rounded-t-3xl bg-gradient-to-br from-slate-700/30 to-slate-900/30">
+            <span class="text-7xl opacity-30 transition duration-500 group-hover:opacity-50">🎮</span>
+          </div>
+          <div class="flex flex-1 flex-col p-6">
+            <p class="font-mono text-xs font-bold tracking-widest text-slate-500">${label}</p>
+            <h3 class="mt-2 text-xl font-extrabold text-slate-300">Upcoming Project</h3>
+            <p class="mt-2 flex-1 text-sm leading-relaxed text-slate-500">อยู่ระหว่างพัฒนา — โปรดติดตามเร็วๆ นี้</p>
+            <span class="mt-6 inline-flex items-center justify-center gap-2 rounded-xl border border-dashed border-slate-600 px-4 py-3 text-sm font-bold text-slate-500">⏳ Coming Soon</span>
+          </div>
+        </div>
+      </article>`;
+    }
+    const labGrid = document.getElementById('labGrid');
+    if (labGrid) for (let n = 2; n <= 7; n++) labGrid.insertAdjacentHTML('beforeend', comingCard('LAB ' + String(n).padStart(2, '0'), n - 1));
+    const projGrid = document.getElementById('projGrid');
+    if (projGrid) for (let n = 1; n <= 3; n++) projGrid.insertAdjacentHTML('beforeend', comingCard('PROJECT ' + String(n).padStart(2, '0'), n - 1));
+
+    // 3D tilt + per-card glow
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('pointermove', e => {
+        const r = card.getBoundingClientRect();
+        const x = e.clientX - r.left, y = e.clientY - r.top;
+        const rx = ((y / r.height) - .5) * -8;
+        const ry = ((x / r.width) - .5) * 8;
+        card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`;
+        const g = card.querySelector('.card-glow');
+        g.style.setProperty('--cx', x + 'px');
+        g.style.setProperty('--cy', y + 'px');
+      });
+      card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+    });
+
+    // scroll reveal
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => { if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { threshold: .15 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // count-up stats
+    function countUp(el){
+      const to = +el.dataset.to; const dur = 1100; const t0 = performance.now();
+      (function step(t){
+        const p = Math.min(1, (t - t0) / dur);
+        el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(step);
+      })(t0);
+    }
+    const cio = new IntersectionObserver(es => {
+      es.forEach(e => { if (e.isIntersecting){ countUp(e.target); cio.unobserve(e.target); } });
+    }, { threshold: .6 });
+    document.querySelectorAll('.counter').forEach(el => cio.observe(el));
+
+    // ---- scroll cue: smooth scroll + fade out เมื่อเลื่อนลง ----
+    const cue = document.getElementById('scrollCue');
+    if (cue) {
+      cue.addEventListener('click', e => {
+        e.preventDefault();
+        document.getElementById('showcase').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      window.addEventListener('scroll', () => {
+        const fade = Math.max(0, 1 - window.scrollY / 280);
+        cue.style.opacity = fade;
+        cue.style.pointerEvents = fade < 0.1 ? 'none' : 'auto';
+      }, { passive: true });
+    }
+
+    // ---- navbar ย่อเมื่อเลื่อนลง + back-to-top ----
+    const navPill = document.getElementById('navPill');
+    const toTop = document.getElementById('toTop');
+    if (toTop) toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if (navPill) navPill.style.transform = y > 40 ? 'scale(0.94)' : 'scale(1)';
+      if (toTop) toTop.classList.toggle('show', y > 400);
+    }, { passive: true });
+
+    // ---- scrollspy: ไฮไลต์เมนูตามตำแหน่ง scroll (รวม Main) ----
+    const spyLinks = {
+      top: document.querySelector('.nav-link[href="#top"]'),
+      labs: document.querySelector('.nav-link[href="#labs"]'),
+      projects: document.querySelector('.nav-link[href="#projects"]'),
+    };
+    const spyOrder = ['top', 'labs', 'projects'];
+    function scrollSpy() {
+      const line = window.innerHeight * 0.35;   // เทียบกับ viewport (rect.top)
+      let cur = 'top';
+      for (const id of spyOrder) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= line) cur = id;
+      }
+      spyOrder.forEach(id => { const l = spyLinks[id]; if (l) l.classList.toggle('active', id === cur); });
+    }
+    window.addEventListener('scroll', scrollSpy, { passive: true });
+    scrollSpy();
+
+    // ---- parallax on scroll ----
+    const pBlobs = document.getElementById('pBlobs');
+    const pGrid  = document.getElementById('pGrid');
+    const pEls   = [...document.querySelectorAll('[data-parallax]')];
+    let ticking = false;
+    function parallax(){
+      const y = window.scrollY || window.pageYOffset;
+      // background layers drift slower than content
+      if (pBlobs) pBlobs.style.transform = `translateY(${y * 0.18}px)`;
+      if (pGrid)  pGrid.style.transform  = `translateY(${y * 0.30}px)`;
+      // glow elements behind cards
+      pEls.forEach(el => {
+        const sp = parseFloat(el.dataset.parallax) || 0;
+        const ty = -y * sp;
+        el.style.transform = el.hasAttribute('data-center')
+          ? `translate(-50%, ${ty}px)` : `translateY(${ty}px)`;
+      });
+      ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!ticking){ requestAnimationFrame(parallax); ticking = true; }
+    }, { passive: true });
+    parallax();
+
+    // ---- cowboy rider particles ควบม้าข้ามจอ ----
+    const riders = document.getElementById('riders');
+    if (riders) {
+      const N = window.innerWidth < 640 ? 3 : 6;
+      const list = [];
+      for (let i = 0; i < N; i++) {
+        const wrap = document.createElement('div');
+        wrap.className = 'rider-wrap';
+        const img = document.createElement('img');
+        img.src = 'rider.png';
+        img.alt = '';
+        const h = 46 + Math.random() * 44;            // สูง 46–90px (เล็กลง อยู่ในแถบบน)
+        img.style.height = h + 'px';
+        wrap.style.top = (16 + Math.random() * 90) + 'px';   // แถบบนสุด เหนือตัวหนังสือ
+        wrap.style.opacity = (0.55 + Math.random() * 0.35).toFixed(2);
+        wrap.appendChild(img);
+        riders.appendChild(wrap);
+        list.push({
+          wrap, img,
+          dir: Math.random() < 0.5 ? 1 : -1,
+          x: Math.random() * window.innerWidth,
+          speed: 45 + Math.random() * 75,             // px/วินาที
+          phase: Math.random() * Math.PI * 2,
+          bobAmp: 4 + Math.random() * 5,
+          bobSpeed: 3.5 + Math.random() * 3,
+        });
+      }
+      // ขับเคลื่อนด้วย requestAnimationFrame (ไม่โดน reduce-motion ปิด)
+      let last = performance.now();
+      (function ride(t) {
+        const dt = Math.min(0.05, (t - last) / 1000); last = t;
+        const W = window.innerWidth, m = 280;
+        for (const r of list) {
+          r.x += r.speed * r.dir * dt;
+          if (r.dir > 0 && r.x > W + m) r.x = -m;
+          if (r.dir < 0 && r.x < -m) r.x = W + m;
+          const s = Math.sin(t / 1000 * r.bobSpeed + r.phase);
+          r.wrap.style.transform = `translate(${r.x.toFixed(1)}px, ${(s * r.bobAmp).toFixed(1)}px)`;
+          r.img.style.transform = `scaleX(${r.dir}) rotate(${(s * 2).toFixed(2)}deg)`;
+        }
+        requestAnimationFrame(ride);
+      })(last);
+    }
+
+    // starfield canvas
+    const cv = document.getElementById('stars'), ctx = cv.getContext('2d');
+    let stars = [], W, H;
+    function resize(){ W = cv.width = innerWidth; H = cv.height = innerHeight;
+      const n = Math.min(140, Math.floor(W * H / 14000));
+      stars = Array.from({length:n}, () => ({
+        x: Math.random()*W, y: Math.random()*H, z: Math.random()*.8+.2,
+        r: Math.random()*1.4+.3, tw: Math.random()*Math.PI*2,
+      }));
+    }
+    resize(); addEventListener('resize', resize);
+    (function loop(t){
+      ctx.clearRect(0,0,W,H);
+      for(const s of stars){
+        s.y += s.z*0.25; if(s.y>H){ s.y=0; s.x=Math.random()*W; }
+        const a = .35 + .45*Math.sin(t*0.002 + s.tw);
+        ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,7);
+        ctx.fillStyle = `rgba(190,200,255,${a*s.z})`; ctx.fill();
+      }
+      requestAnimationFrame(loop);
+    })(0);
+  </script>
+</body>
+</html>
