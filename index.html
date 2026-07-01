@@ -261,7 +261,32 @@
     </a>
 
     <h3 id="projects" class="reveal mb-6 mt-16 flex scroll-mt-24 items-center gap-3 text-lg font-extrabold text-slate-200"><span class="h-5 w-1 rounded bg-fuchsia-400"></span>Projects</h3>
-    <div id="projGrid" class="grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-3"></div>
+    <div id="projGrid" class="grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-3">
+
+      <!-- Project 01 -->
+      <article class="card reveal group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[.04] p-px backdrop-blur-xl">
+        <div class="card-glow pointer-events-none absolute inset-0 rounded-3xl"></div>
+        <div class="relative flex flex-1 flex-col rounded-[calc(1.5rem-1px)]">
+          <div class="relative flex h-44 items-center justify-center overflow-hidden rounded-t-3xl bg-gradient-to-br from-violet-600/30 via-fuchsia-500/15 to-cyan-500/25">
+            <div class="absolute inset-0 opacity-30 [background:radial-gradient(circle_at_30%_30%,#fff,transparent_60%)]"></div>
+            <span class="text-7xl drop-shadow-2xl transition duration-500 group-hover:scale-125 group-hover:-rotate-6">🚀</span>
+            <span class="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-emerald-500/20 px-3 py-1 text-xs font-bold text-emerald-300 ring-1 ring-emerald-400/40">
+              <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span> LIVE · เล่นได้
+            </span>
+          </div>
+          <div class="flex flex-1 flex-col p-6">
+            <p class="font-mono text-xs font-bold tracking-widest text-fuchsia-400">PROJECT 01</p>
+            <h3 class="mt-2 text-xl font-extrabold">NEON DODGE</h3>
+            <p class="mt-2 flex-1 text-sm leading-relaxed text-slate-400">เกมหลบมอนสเตอร์ธีมนีออน ตัวละครวาดเอง — Godot 2D</p>
+            <a href="project01/game22.html"
+               class="pulse mt-6 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-fuchsia-500 to-cyan-500 px-4 py-3 text-sm font-extrabold text-white transition hover:from-fuchsia-400 hover:to-cyan-400 active:scale-95">
+              ▶ เล่นเลย
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
   </main>
 
   <!-- ============ FOOTER ============ -->
@@ -298,7 +323,7 @@
     const labGrid = document.getElementById('labGrid');
     if (labGrid) for (let n = 3; n <= 7; n++) labGrid.insertAdjacentHTML('beforeend', comingCard('LAB ' + String(n).padStart(2, '0'), n - 1));
     const projGrid = document.getElementById('projGrid');
-    if (projGrid) for (let n = 1; n <= 3; n++) projGrid.insertAdjacentHTML('beforeend', comingCard('PROJECT ' + String(n).padStart(2, '0'), n - 1));
+    if (projGrid) for (let n = 2; n <= 3; n++) projGrid.insertAdjacentHTML('beforeend', comingCard('PROJECT ' + String(n).padStart(2, '0'), n - 1));
 
     // 3D tilt + per-card glow
     document.querySelectorAll('.card').forEach(card => {
