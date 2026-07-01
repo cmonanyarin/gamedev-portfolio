@@ -3,12 +3,54 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta http-equiv="refresh" content="0; url=game21.html" />
-<title>Lab 02 — Your First 2D Game</title>
-<style>html,body{margin:0;height:100%;background:#000;color:#fff;font-family:system-ui,sans-serif;display:flex;align-items:center;justify-content:center}a{color:#a5b4fc}</style>
+<title>แบบฝึกหัดที่ 2 — Godot 2D</title>
+<style>
+@font-face{font-family:'LINE Seed Sans TH';src:url('https://cdn.jsdelivr.net/gh/lazywasabi/thai-web-fonts@7/fonts/LINESeedSansTH/LINESeedSansTH-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+*{margin:0;box-sizing:border-box}
+body{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;
+background:radial-gradient(circle at 30% 20%,#131033,#05060f 70%);color:#e2e8f0;
+font-family:'LINE Seed Sans TH',system-ui,sans-serif;text-align:center;padding:32px}
+h1{font-size:30px;font-weight:700;background:linear-gradient(90deg,#67e8f9,#a5b4fc,#f0abfc);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:#94a3b8;font-size:15px;margin-top:-14px}
+.grid{display:flex;flex-wrap:wrap;gap:22px;justify-content:center;max-width:760px}
+.card{width:330px;text-decoration:none;color:#fff;border:1px solid rgba(255,255,255,.12);border-radius:22px;
+background:rgba(255,255,255,.04);backdrop-filter:blur(8px);overflow:hidden;transition:.25s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-6px);border-color:rgba(103,232,249,.5);box-shadow:0 12px 40px rgba(103,232,249,.15)}
+.thumb{height:130px;display:flex;align-items:center;justify-content:center;font-size:64px}
+.t1{background:linear-gradient(135deg,rgba(0,229,255,.25),rgba(255,61,240,.2))}
+.t2{background:linear-gradient(135deg,rgba(139,92,246,.3),rgba(0,229,255,.2))}
+.body{padding:20px;text-align:left}
+.tag{font-family:monospace;font-size:12px;letter-spacing:2px;color:#67e8f9;font-weight:700}
+.name{font-size:20px;font-weight:700;margin:6px 0}
+.desc{font-size:13px;color:#94a3b8;line-height:1.5}
+.play{margin-top:16px;display:inline-block;font-weight:700;font-size:14px;color:#fff;
+background:linear-gradient(90deg,#22d3ee,#8b5cf6);padding:9px 18px;border-radius:999px}
+.back{text-decoration:none;color:#a5b4fc;font-weight:700;font-size:14px}
+</style>
 </head>
 <body>
-<p>กำลังเปิดเกม… ถ้าไม่เด้งอัตโนมัติ <a href="game21.html">คลิกที่นี่</a></p>
-<script>location.replace('game21.html');</script>
+<h1>แบบฝึกหัดที่ 2 — Godot 2D</h1>
+<p class="sub">673380353-1 · อชิรวิทย์ ศรีชา</p>
+<div class="grid">
+  <a class="card" href="game21.html">
+    <div class="thumb t1">🔮</div>
+    <div class="body">
+      <div class="tag">2.1</div>
+      <div class="name">Plinko นีออน</div>
+      <div class="desc">Scene · Node · Instance — ลูกบอลตกลอดหมุดเด้งแบบ Plinko ธีมนีออน</div>
+      <span class="play">▶ เล่นเลย</span>
+    </div>
+  </a>
+  <a class="card" href="game22.html">
+    <div class="thumb t2">🚀</div>
+    <div class="body">
+      <div class="tag">2.2</div>
+      <div class="name">NEON DODGE</div>
+      <div class="desc">เกมหลบมอนสเตอร์ ตัวละคร + ฉากวาดเอง ธีมนีออนสเปซ</div>
+      <span class="play">▶ เล่นเลย</span>
+    </div>
+  </a>
+</div>
+<a class="back" href="../index.html">← กลับหน้าหลัก</a>
 </body>
 </html>
