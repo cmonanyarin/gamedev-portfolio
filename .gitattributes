@@ -1,0 +1,5 @@
+# Godot web exports must stay byte-exact
+*.wasm binary
+*.pck binary
+*.png binary
+*.jpg binary

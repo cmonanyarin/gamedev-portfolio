@@ -519,12 +519,12 @@
       <div class="reveal mt-10 flex flex-col items-center gap-1">
 
         <p class="text-2xl font-extrabold sm:text-3xl">
-          <span class="bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
+          <span class="bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent" data-field="name">
             อชิรวิทย์ ศรีชา
           </span>
         </p>
 
-        <p class="font-mono text-sm tracking-widest text-indigo-300/80">
+        <p class="font-mono text-sm tracking-widest text-indigo-300/80" data-field="studentId" data-prefix="STUDENT ID · ">
           STUDENT ID · 673380353-1
         </p>
 
@@ -537,7 +537,7 @@
         <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-5 backdrop-blur">
           <div
             class="counter text-3xl font-extrabold text-indigo-300"
-            data-to="7"
+            data-stat="labs" data-to="0"
           >
             0
           </div>
@@ -551,7 +551,7 @@
         <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-5 backdrop-blur">
           <div
             class="counter text-3xl font-extrabold text-cyan-300"
-            data-to="1"
+            data-stat="projects" data-to="0"
           >
             0
           </div>
@@ -565,7 +565,7 @@
         <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-5 backdrop-blur">
           <div
             class="counter text-3xl font-extrabold text-fuchsia-300"
-            data-to="6"
+            data-stat="playable" data-to="0"
           >
             0
           </div>
@@ -639,306 +639,7 @@
         id="labGrid"
         class="grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-3"
       >
-
-
-        <!-- Lab 01 -->
-        <article class="card reveal group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[.04] p-px backdrop-blur-xl">
-
-          <div class="card-glow pointer-events-none absolute inset-0 rounded-3xl"></div>
-
-          <div class="relative flex flex-1 flex-col rounded-[calc(1.5rem-1px)]">
-
-            <div class="relative flex h-44 items-center justify-center overflow-hidden rounded-t-3xl bg-gradient-to-br from-indigo-500/25 via-sky-500/15 to-cyan-500/25">
-
-              <div class="absolute inset-0 opacity-30 [background:radial-gradient(circle_at_30%_30%,#fff,transparent_60%)]"></div>
-
-              <span class="text-7xl drop-shadow-2xl transition duration-500 group-hover:scale-125 group-hover:-rotate-6">
-                👋
-              </span>
-
-              <span class="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-emerald-500/20 px-3 py-1 text-xs font-bold text-emerald-300 ring-1 ring-emerald-400/40">
-                <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                LIVE · เล่นได้
-              </span>
-
-            </div>
-
-
-            <div class="flex flex-1 flex-col p-6">
-
-              <p class="font-mono text-xs font-bold tracking-widest text-indigo-400">
-                LAB 01
-              </p>
-
-              <h3 class="mt-2 text-xl font-extrabold">
-                แบบฝึกหัดที่ 1
-              </h3>
-
-              <p class="mt-2 flex-1 text-sm leading-relaxed text-slate-400">
-                สร้างฉากแนะนำตนเอง ด้วย Godot
-              </p>
-
-              <a
-                href="lab01/index.html"
-                class="pulse mt-6 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-fuchsia-500 px-4 py-3 text-sm font-extrabold text-white transition hover:from-indigo-400 hover:to-fuchsia-400 active:scale-95"
-              >
-                ▶ เปิดชมเลย
-              </a>
-
-            </div>
-
-          </div>
-
-        </article>
-
-
-        <!-- Lab 02 -->
-        <article class="card reveal group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[.04] p-px backdrop-blur-xl">
-
-          <div class="card-glow pointer-events-none absolute inset-0 rounded-3xl"></div>
-
-          <div class="relative flex flex-1 flex-col rounded-[calc(1.5rem-1px)]">
-
-            <div class="relative flex h-44 items-center justify-center overflow-hidden rounded-t-3xl bg-gradient-to-br from-cyan-500/25 via-fuchsia-500/15 to-violet-600/25">
-
-              <div class="absolute inset-0 opacity-30 [background:radial-gradient(circle_at_30%_30%,#fff,transparent_60%)]"></div>
-
-              <span class="text-7xl drop-shadow-2xl transition duration-500 group-hover:scale-125 group-hover:rotate-12">
-                🔮
-              </span>
-
-              <span class="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-emerald-500/20 px-3 py-1 text-xs font-bold text-emerald-300 ring-1 ring-emerald-400/40">
-                <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                LIVE · เล่นได้
-              </span>
-
-            </div>
-
-
-            <div class="flex flex-1 flex-col p-6">
-
-              <p class="font-mono text-xs font-bold tracking-widest text-cyan-400">
-                LAB 02
-              </p>
-
-              <h3 class="mt-2 text-xl font-extrabold">
-                แบบฝึกหัดที่ 2
-              </h3>
-
-              <p class="mt-2 flex-1 text-sm leading-relaxed text-slate-400">
-                Your First 2D Game 2.1 / 2.2
-              </p>
-
-              <a
-                href="lab02/index.html"
-                class="pulse mt-6 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-violet-500 px-4 py-3 text-sm font-extrabold text-white transition hover:from-cyan-400 hover:to-violet-400 active:scale-95"
-              >
-                ▶ เปิดชมเลย
-              </a>
-
-            </div>
-
-          </div>
-
-        </article>
-
-
-        <!-- Lab 03 -->
-        <article class="card reveal group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[.04] p-px backdrop-blur-xl">
-
-          <div class="card-glow pointer-events-none absolute inset-0 rounded-3xl"></div>
-
-          <div class="relative flex flex-1 flex-col rounded-[calc(1.5rem-1px)]">
-
-            <div class="relative flex h-44 items-center justify-center overflow-hidden rounded-t-3xl bg-gradient-to-br from-amber-500/25 via-rose-500/15 to-fuchsia-600/25">
-
-              <div class="absolute inset-0 opacity-30 [background:radial-gradient(circle_at_30%_30%,#fff,transparent_60%)]"></div>
-
-              <span class="text-7xl drop-shadow-2xl transition duration-500 group-hover:scale-125 group-hover:-rotate-6">
-                🦴
-              </span>
-
-              <span class="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-emerald-500/20 px-3 py-1 text-xs font-bold text-emerald-300 ring-1 ring-emerald-400/40">
-                <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                LIVE · เล่นได้
-              </span>
-
-            </div>
-
-
-            <div class="flex flex-1 flex-col p-6">
-
-              <p class="font-mono text-xs font-bold tracking-widest text-amber-400">
-                LAB 03
-              </p>
-
-              <h3 class="mt-2 text-xl font-extrabold">
-                แบบฝึกหัดที่ 3
-              </h3>
-
-              <div class="mt-2 flex-1"></div>
-
-              <a
-                href="lab03/index.html"
-                class="pulse mt-6 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-rose-500 px-4 py-3 text-sm font-extrabold text-white transition hover:from-amber-400 hover:to-rose-400 active:scale-95"
-              >
-                ▶ เปิดชมเลย
-              </a>
-
-            </div>
-
-          </div>
-
-        </article>
-
-
-        <!-- Lab 04 -->
-        <article class="card reveal group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[.04] p-px backdrop-blur-xl">
-
-          <div class="card-glow pointer-events-none absolute inset-0 rounded-3xl"></div>
-
-          <div class="relative flex flex-1 flex-col rounded-[calc(1.5rem-1px)]">
-
-            <div class="relative flex h-44 items-center justify-center overflow-hidden rounded-t-3xl bg-gradient-to-br from-emerald-500/25 via-red-500/15 to-rose-700/25">
-
-              <div class="absolute inset-0 opacity-30 [background:radial-gradient(circle_at_30%_30%,#fff,transparent_60%)]"></div>
-
-              <span class="text-7xl drop-shadow-2xl transition duration-500 group-hover:scale-125 group-hover:-rotate-6">
-                👹
-              </span>
-
-              <span class="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-emerald-500/20 px-3 py-1 text-xs font-bold text-emerald-300 ring-1 ring-emerald-400/40">
-                <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                LIVE · เล่นได้
-              </span>
-
-            </div>
-
-            <div class="flex flex-1 flex-col p-6">
-
-              <p class="font-mono text-xs font-bold tracking-widest text-emerald-400">
-                LAB 04
-              </p>
-
-              <h3 class="mt-2 text-xl font-extrabold">
-                แบบฝึกหัดที่ 4
-              </h3>
-
-              <div class="mt-2 flex-1"></div>
-
-              <a
-                href="lab04/index.html"
-                class="pulse mt-6 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-500 to-rose-600 px-4 py-3 text-sm font-extrabold text-white transition hover:from-emerald-400 hover:to-rose-500 active:scale-95"
-              >
-                ▶ เปิดชมเลย
-              </a>
-
-            </div>
-
-          </div>
-
-        </article>
-
-
-        <!-- Lab 05 -->
-        <article class="card reveal group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[.04] p-px backdrop-blur-xl">
-
-          <div class="card-glow pointer-events-none absolute inset-0 rounded-3xl"></div>
-
-          <div class="relative flex flex-1 flex-col rounded-[calc(1.5rem-1px)]">
-
-            <div class="relative flex h-44 items-center justify-center overflow-hidden rounded-t-3xl bg-gradient-to-br from-violet-500/25 via-indigo-500/15 to-cyan-500/25">
-
-              <div class="absolute inset-0 opacity-30 [background:radial-gradient(circle_at_30%_30%,#fff,transparent_60%)]"></div>
-
-              <span class="text-7xl drop-shadow-2xl transition duration-500 group-hover:scale-125 group-hover:rotate-6">
-                🎮
-              </span>
-
-              <span class="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-emerald-500/20 px-3 py-1 text-xs font-bold text-emerald-300 ring-1 ring-emerald-400/40">
-                <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                LIVE · เล่นได้
-              </span>
-
-            </div>
-
-            <div class="flex flex-1 flex-col p-6">
-
-              <p class="font-mono text-xs font-bold tracking-widest text-violet-400">
-                LAB 05
-              </p>
-
-              <h3 class="mt-2 text-xl font-extrabold">
-                แบบฝึกหัดที่ 5
-              </h3>
-
-              <p class="mt-2 flex-1 text-sm leading-relaxed text-slate-400">
-                แบบฝึกหัดพัฒนาเกมด้วย Godot Engine
-              </p>
-
-              <a
-                href="lab05/index.html"
-                class="pulse mt-6 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-violet-500 to-cyan-500 px-4 py-3 text-sm font-extrabold text-white transition hover:from-violet-400 hover:to-cyan-400 active:scale-95"
-              >
-                ▶ เปิดชมเลย
-              </a>
-
-            </div>
-
-          </div>
-
-        </article>
-
-
-        <!-- Lab 06 -->
-        <article class="card reveal group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[.04] p-px backdrop-blur-xl">
-
-          <div class="card-glow pointer-events-none absolute inset-0 rounded-3xl"></div>
-
-          <div class="relative flex flex-1 flex-col rounded-[calc(1.5rem-1px)]">
-
-            <div class="relative flex h-44 items-center justify-center overflow-hidden rounded-t-3xl bg-gradient-to-br from-amber-500/25 via-orange-500/15 to-rose-500/25">
-
-              <div class="absolute inset-0 opacity-30 [background:radial-gradient(circle_at_30%_30%,#fff,transparent_60%)]"></div>
-
-              <span class="text-7xl drop-shadow-2xl transition duration-500 group-hover:scale-125 group-hover:rotate-6">
-                🛵
-              </span>
-
-              <span class="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-emerald-500/20 px-3 py-1 text-xs font-bold text-emerald-300 ring-1 ring-emerald-400/40">
-                <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                LIVE · เล่นได้
-              </span>
-
-            </div>
-
-            <div class="flex flex-1 flex-col p-6">
-
-              <p class="font-mono text-xs font-bold tracking-widest text-amber-400">
-                LAB 06
-              </p>
-
-              <h3 class="mt-2 text-xl font-extrabold">
-                แบบฝึกหัดที่ 6
-              </h3>
-
-              <p class="mt-2 flex-1 text-sm leading-relaxed text-slate-400">
-                Animation Showcase: ตัวละคร Roblox ที่ rig ด้วย Mixamo + 307 clips จาก Melee / Shooter Libraries และท่าขี่สกู๊ตเตอร์ Giorno
-              </p>
-
-              <a
-                href="lab06/index.html"
-                class="pulse mt-6 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-rose-500 px-4 py-3 text-sm font-extrabold text-white transition hover:from-amber-400 hover:to-rose-400 active:scale-95"
-              >
-                ▶ เปิดชมเลย
-              </a>
-
-            </div>
-
-          </div>
-
-        </article>
-
+        <!-- การ์ดสร้างอัตโนมัติจาก portfolio.js — แก้ข้อมูลที่ไฟล์นั้น -->
       </div>
 
 
@@ -979,85 +680,7 @@
         id="projGrid"
         class="grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-3"
       >
-
-
-        <!-- ============ PROJECT 01 ============ -->
-        <article class="card reveal group relative flex flex-col overflow-hidden rounded-3xl border border-fuchsia-400/20 bg-white/[.04] p-px backdrop-blur-xl">
-
-          <div class="card-glow pointer-events-none absolute inset-0 rounded-3xl"></div>
-
-          <div class="relative flex flex-1 flex-col rounded-[calc(1.5rem-1px)]">
-
-
-            <!-- Project Image -->
-            <div
-              class="relative flex h-52 items-center justify-center overflow-hidden rounded-t-3xl bg-gradient-to-br from-fuchsia-500/25 via-violet-500/15 to-cyan-500/25"
-            >
-
-              <div class="absolute inset-0 opacity-30 [background:radial-gradient(circle_at_30%_30%,#fff,transparent_60%)]"></div>
-
-
-              <img
-                src="project01/index.png"
-                alt="Project 01"
-                class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-              />
-
-
-              <!-- Fallback if image missing -->
-              <div
-                class="absolute inset-0 hidden items-center justify-center"
-              >
-                <span class="text-7xl">
-                  🎮
-                </span>
-              </div>
-
-
-              <!-- LIVE -->
-              <span
-                class="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-emerald-500/20 px-3 py-1 text-xs font-bold text-emerald-300 ring-1 ring-emerald-400/40 backdrop-blur"
-              >
-                <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                LIVE · เล่นได้
-              </span>
-
-            </div>
-
-
-            <!-- Project Content -->
-            <div class="flex flex-1 flex-col p-6">
-
-              <p class="font-mono text-xs font-bold tracking-widest text-fuchsia-400">
-                PROJECT 01
-              </p>
-
-
-              <h3 class="mt-2 text-xl font-extrabold">
-                Project 01
-              </h3>
-
-
-              <p class="mt-2 flex-1 text-sm leading-relaxed text-slate-400">
-                เกมที่พัฒนาด้วย Godot Engine
-              </p>
-
-
-              <!-- Play Button -->
-              <a
-                href="project01/index.html"
-                class="pulse mt-6 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-fuchsia-500 to-violet-500 px-4 py-3 text-sm font-extrabold text-white transition hover:from-fuchsia-400 hover:to-violet-400 active:scale-95"
-              >
-                ▶ เล่นเกม
-              </a>
-
-            </div>
-
-          </div>
-
-        </article>
-
+        <!-- การ์ดสร้างอัตโนมัติจาก portfolio.js — แก้ข้อมูลที่ไฟล์นั้น -->
       </div>
 
     </main>
@@ -1070,7 +693,7 @@
 
     <p class="text-sm text-slate-500">
       © 2026
-      <span class="font-bold text-slate-300">
+      <span class="font-bold text-slate-300" data-field="name">
         อชิรวิทย์ ศรีชา
       </span>
       · Built with Godot &amp; Tailwind CSS
@@ -1094,6 +717,9 @@
 
 
   <!-- ============ SCRIPTS ============ -->
+  <!-- ข้อมูลการ์ดทั้งหมดอยู่ใน portfolio.js -->
+  <script src="portfolio.js"></script>
+  <script src="js/cards.js"></script>
   <script>
 
     /* =========================================================
